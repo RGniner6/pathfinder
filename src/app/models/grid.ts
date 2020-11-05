@@ -42,14 +42,14 @@ export class Grid {
   get start() {
     for (let x = 0; x < this.numColumns; x++)
       for (let y = 0; y < this.numRows; y++)
-        if (this.grid[x][y].status === 'start')
+        if (this.grid[x][y].type === 'start')
           return this.grid[x][y]
     return null;
   }
   get end() {
     for (let x = 0; x < this.numColumns; x++)
       for (let y = 0; y < this.numRows; y++)
-        if (this.grid[x][y].status === 'end')
+        if (this.grid[x][y].type === 'end')
           return this.grid[x][y]
     return null;
   }
@@ -64,7 +64,7 @@ export class Grid {
     const neighbours: Cell[] = [];
     const {x, y} = cell;
     function addNeighbour(neighbour: Cell) {
-      if (neighbour.status !== 'wall' && !neighbour.isVisited)
+      if (neighbour.type !== 'wall' && !neighbour.closed)
         neighbours.push(neighbour);
     }
     if (x < this.numColumns-1) addNeighbour(this.getCell(x+1, y));

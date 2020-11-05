@@ -1,0 +1,21 @@
+.cell {
+  margin: 1px;
+}
+
+.tile {
+  height: 100%;
+  width: 100%;
+  border: 1px solid rgba(0,0,0,0.5);
+}
+
+.start {
+  background-color: indianred;
+}
+
+.end {
+  background-color: navy;
+}
+
+.wall {
+  background-color: black;
+}
