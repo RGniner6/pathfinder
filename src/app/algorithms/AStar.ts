@@ -9,6 +9,7 @@ export class AStar implements SearchAlgorithm {
   open: Cell[]; //Set of nodes to be evaluated
   closed: Cell[]; //Set of nodes already evaluated
   visited: Cell[]; //Just used to animate the order cells were visited in
+  costFunction: (cell1: Cell, cell2: Cell) => number
 
   end: Cell;
   start: Cell;
@@ -49,7 +50,7 @@ export class AStar implements SearchAlgorithm {
       this.visited.push(current);
 
       if (current.type === 'end') {
-        console.log(`Path found!`);
+        console.log(`Path found! Visited ${this.visited.length} cells`);
         return {
           path: this.backtrackPathFromDestination(),
           visited: this.visited,
@@ -57,11 +58,11 @@ export class AStar implements SearchAlgorithm {
       }
 
       for (let neighbour of this.grid.getUnvisitedNeighbors(current)) {
-        if (this.closed.includes(neighbour))
+        if (this.closed.includes(neighbour) || neighbour.type === 'wall')
           continue;
 
         if (!this.open.includes(neighbour)
-          || this.linearDistanceBetween(current, neighbour) < neighbour.gCost) {
+          || this.costFunction(current, neighbour) < neighbour.gCost) {
           this.updateCostToNeighbour(current, neighbour);
           neighbour.prevCell = current;
           if (!this.open.includes(neighbour)) {
@@ -81,10 +82,10 @@ export class AStar implements SearchAlgorithm {
   updateCostToNeighbour(current: Cell, neighbour: Cell) {
     // f = g + h
     //totalCost = cost to current from start + estimated cost to destination from current
-    neighbour.gCost = current.gCost + this.linearDistanceBetween(current, neighbour);
-    neighbour.hCost = this.linearDistanceBetween(neighbour, this.end);
+    neighbour.gCost = current.gCost + this.costFunction(current, neighbour);
+    neighbour.hCost = this.costFunction(neighbour, this.end);
     neighbour.cost = neighbour.gCost + neighbour.hCost;
-    console.log(`Neighbour's gCost: ${neighbour.gCost}, hCost: ${neighbour.hCost}, cost: ${neighbour.cost}, `)
+    // console.log(`Neighbour's gCost: ${neighbour.gCost}, hCost: ${neighbour.hCost}, cost: ${neighbour.cost}, `)
 
   }
 
@@ -93,16 +94,19 @@ export class AStar implements SearchAlgorithm {
     //We're rounding off to the first decimal and x10 for a nice whole number
     const widthSquared = Math.pow((cell1.x - cell2.x), 2);
     const heightSquared = Math.pow((cell1.y - cell2.y), 2);
-    const cost = Math.floor(Math.sqrt(widthSquared + heightSquared) * 10);
-    return cost
+    return  Math.floor(Math.sqrt(widthSquared + heightSquared) * 10);
+  }
+
+  manhattanDistance(cell1: Cell, cell2: Cell) {
+    return Math.abs(cell1.x - cell2.x) + Math.abs(cell1.y - cell2.y)
   }
 
   sortOpen() {
     this.open.sort((cell1, cell2) => {
-      return cell1.cost - cell2.cost;
+      // return cell1.cost - cell2.cost;
       //Makes sorting slower but finds better best path guesses
-      // return cell1.distance === cell2.distance ?
-      //   cell1.hCost - cell2.hCost : cell1.distance - cell2.distance;
+      return cell1.cost === cell2.cost ?
+        cell1.hCost - cell2.hCost : cell1.cost - cell2.cost;
     })
   }
 
@@ -120,6 +124,7 @@ export class AStar implements SearchAlgorithm {
     this.grid = grid;
     this.start = this.grid.start;
     this.end = this.grid.end;
+    this.costFunction = this.manhattanDistance;
 
   }
 
@@ -128,7 +133,7 @@ export class AStar implements SearchAlgorithm {
     this.open = [];
     this.closed = [];
     this.path = [];
-    this.grid.refresh();
+    // this.grid.resetGrid();
   }
 
 }
