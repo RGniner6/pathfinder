@@ -61,7 +61,7 @@ export class Grid {
   }
 
   clearObstacles(){
-    this.refresh();
+    // this.refresh();
     for (let row of this.grid)
       for (let cell of row)
         if (cell.type !== 'start' && cell.type !== 'end')
@@ -69,7 +69,7 @@ export class Grid {
   }
 
   addRandomWalls(wallProbability: number) {
-    this.refresh();
+    // this.refresh();
     for (let row of this.grid)
       for (let cell of row) {
         let randomNum = Math.floor(Math.random() * 100)

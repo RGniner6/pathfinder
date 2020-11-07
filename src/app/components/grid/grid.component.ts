@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Cell} from '../../models/cell';
 import {GridService} from '../../services/grid.service';
+import {Dijkstra} from '../../algorithms/Dijkstra';
+import {AStar} from '../../algorithms/AStar';
 
 @Component({
   selector: 'app-grid',
@@ -31,7 +33,7 @@ export class GridComponent implements OnInit {
   }
 
   solve() {
-
+    this.gridService.solve(new AStar());
   }
 
 }
