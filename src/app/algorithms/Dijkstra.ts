@@ -13,7 +13,8 @@ export class Dijkstra implements SearchAlgorithm {
   constructor() {
   }
 
-  findPath() {
+  findPath(grid: Grid) {
+    this.grid = grid;
     //Set distance to all cells at infinity, sets starting cell distance to 0
     this.reset();
     //Set all cells as unvisited
@@ -26,15 +27,15 @@ export class Dijkstra implements SearchAlgorithm {
       //On subsequent iterations, it's the closest neighbour to the most recently visited cell
       const closestCell = this.unvisited.shift();
       //If it's a wall, move on to the next closest cell
-      if (closestCell.status === 'wall') continue;
+      if (closestCell.type === 'wall') continue;
       //If closest cell is at distance=infinity, then there is no path to the destination. Exit loop
       if (closestCell.cost === Number.MAX_VALUE) {
         console.log('Impossible maze');
         break;
       }
-      closestCell.setVisited();
+      closestCell.setClosed();
       this.visited.push(closestCell);
-      if (closestCell.status === 'end') {
+      if (closestCell.type === 'end') {
         console.log('Path found!');
         this.destination = closestCell;
         break;
@@ -66,7 +67,7 @@ export class Dijkstra implements SearchAlgorithm {
     let current = this.destination;
     while (current != null) {
       this.path.unshift(current);
-      current.isPartOfPath();
+      // current.isPartOfPath();
       current = current.prevCell;
     }
     return this.path;
@@ -76,7 +77,6 @@ export class Dijkstra implements SearchAlgorithm {
     this.visited = [];
     this.unvisited = [];
     this.path = [];
-    this.grid.refreshGrid();
   }
 
   setGrid(grid: Grid) {

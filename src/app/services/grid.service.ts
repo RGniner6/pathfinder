@@ -25,6 +25,7 @@ export class GridService {
   }
 
   refresh() {
+    this.animationService.resetGrid(this.gridController.getAllCells());
     this.gridController.refresh();
   }
 
@@ -33,6 +34,9 @@ export class GridService {
   }
 
   solve(algorithm: SearchAlgorithm) {
-
+    this.refresh();
+    const {visited, path} = algorithm.findPath(this.gridController);
+    this.animationService.setAnimationArrays(visited, path);
+    this.animationService.playAnimation();
   }
 }

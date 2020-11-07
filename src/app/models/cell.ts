@@ -6,6 +6,7 @@ export class Cell {
   //For pathfinding algos
   cost: number;
   closed: boolean;
+  prevCell: Cell;
   //For A* search
   gCost: number;
   hCost: number;
@@ -33,12 +34,16 @@ export class Cell {
   setClear() {
     this.type = 'clear';
   }
+  setClosed() {
+    this.closed = true;
+  }
 
   reset() {
     this.closed = false;
     this.cost = Number.MAX_VALUE;
     this.gCost = Number.MAX_VALUE;
     this.hCost = Number.MAX_VALUE;
+    this.prevCell = null;
 
     if (this.type === 'start') {
       this.cost = 0;

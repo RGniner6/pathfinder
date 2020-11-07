@@ -19,4 +19,8 @@ export class AnimationService {
     this.visited.forEach(cell => cell.animate('visited'));
     this.path.forEach(cell => cell.animate('path'));
   }
+
+  resetGrid(cells: Cell[]) {
+    cells.forEach(cell => cell.animate(''));
+  }
 }

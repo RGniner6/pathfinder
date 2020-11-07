@@ -34,7 +34,8 @@ export class AStar implements SearchAlgorithm {
    */
 
 
-  findPath(): { path: Cell[]; visited: Cell[] } {
+  findPath(grid: Grid): { path: Cell[]; visited: Cell[] } {
+    this.grid = grid;
     let current: Cell;
     //Set distance to all cells at infinity, sets starting cell distance to 0
     this.reset();
@@ -43,11 +44,11 @@ export class AStar implements SearchAlgorithm {
       this.sortOpen();
       current = this.open.shift();
       // console.log(`Open size: ${this.open.length}, current cost = ${current.cost}`);
-      current.setVisited();
+      current.setClosed();
       this.closed.push(current);
       this.visited.push(current);
 
-      if (current.status === 'end') {
+      if (current.type === 'end') {
         console.log(`Path found!`);
         return {
           path: this.backtrackPathFromDestination(),
@@ -109,7 +110,7 @@ export class AStar implements SearchAlgorithm {
     let current = this.end;
     while (current != null) {
       this.path.unshift(current);
-      current.isPartOfPath();
+      // current.isPartOfPath();
       current = current.prevCell;
     }
     return this.path;
@@ -127,7 +128,7 @@ export class AStar implements SearchAlgorithm {
     this.open = [];
     this.closed = [];
     this.path = [];
-    this.grid.refreshGrid();
+    // this.grid.refreshGrid();
   }
 
 }

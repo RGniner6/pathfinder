@@ -13,6 +13,10 @@ export class CellComponent implements OnInit {
   cell: Cell;
   size: number = 20;
 
+  //For animations
+  visited: boolean = false;
+  path: boolean = false;
+
   @ViewChild('tile', {static: true}) tile: ElementRef;
 
   constructor() {
@@ -28,7 +32,21 @@ export class CellComponent implements OnInit {
   }
 
   playAnimation(type: string) {
-
+    if (this.cell.type !== 'start' && this.cell.type !== 'end')
+      switch (type) {
+        case 'visited': {
+            this.visited = true;
+            break;
+        }
+        case 'path': {
+          this.path = true;
+          break;
+        }
+        default: {
+          this.visited = false;
+          this.path = false;
+        }
+      }
   }
 
 }

@@ -1,6 +1,8 @@
 <div class="cell">
   <div class="tile"
        [ngStyle]="{'height': size+'px', 'width': size+'px'}"
-       [ngClass]="cell.type">
+       [ngClass]="cell.type"
+       [class.path]="path"
+       [class.visited]="visited">
   </div>
 </div>

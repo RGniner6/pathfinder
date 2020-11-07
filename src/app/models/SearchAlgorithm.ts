@@ -7,7 +7,7 @@ export interface SearchAlgorithm {
   path: Cell[];
   distanceMatrix: number[][];
 
-  findPath(): { path: Cell[], visited: Cell[] };
+  findPath(grid: Grid): { path: Cell[], visited: Cell[] };
   getVisited();
   setGrid(grid: Grid);
 }
