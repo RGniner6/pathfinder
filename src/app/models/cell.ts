@@ -27,6 +27,9 @@ export class Cell {
   setWeight() {
     this.type = 'weight';
   }
+  setWall() {
+    this.type = 'wall';
+  }
   setClear() {
     this.type = 'clear';
   }
@@ -50,6 +53,7 @@ export class Cell {
   animate(type: string) {
     this.animate$.next(type);
   }
+
 }
 
 export type CellType = 'wall' | 'start' | 'end' | 'clear' | 'weight';

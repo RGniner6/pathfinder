@@ -17,4 +17,16 @@ export class GridService {
     this.gridController.setStart(start[0], start[1]);
     this.gridController.setEnd(end[0], end[1]);
   }
+
+  clearObstacles() {
+    this.gridController.clearObstacles();
+  }
+
+  refresh() {
+    this.gridController.refresh();
+  }
+
+  addRandomWalls(wallProbability: number) {
+    this.gridController.addRandomWalls(wallProbability);
+  }
 }

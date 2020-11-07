@@ -54,10 +54,32 @@ export class Grid {
     return null;
   }
 
-  resetGrid(){
+  refresh(){
     for (let row of this.grid)
       for (let cell of row)
         cell.reset();
+  }
+
+  clearObstacles(){
+    this.refresh();
+    for (let row of this.grid)
+      for (let cell of row)
+        if (cell.type !== 'start' && cell.type !== 'end')
+          cell.setClear();
+  }
+
+  addRandomWalls(wallProbability: number) {
+    this.refresh();
+    for (let row of this.grid)
+      for (let cell of row) {
+        let randomNum = Math.floor(Math.random() * 100)
+        if (cell.type!=='start' && cell.type!=='end') {
+          if (randomNum < wallProbability)
+            cell.setWall();
+          else
+            cell.setClear();
+        }
+      }
   }
 
   getUnvisitedNeighbors(cell: Cell): Cell[] {

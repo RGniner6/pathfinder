@@ -76,7 +76,7 @@ export class Dijkstra implements SearchAlgorithm {
     this.visited = [];
     this.unvisited = [];
     this.path = [];
-    this.grid.resetGrid();
+    this.grid.refreshGrid();
   }
 
   setGrid(grid: Grid) {

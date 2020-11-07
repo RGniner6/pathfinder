@@ -18,4 +18,20 @@ export class GridComponent implements OnInit {
     this.gridService.setStartAndEnd([8,10], [25, 10]);
   }
 
+  clearObstacles() {
+      this.gridService.clearObstacles();
+  }
+
+  addRandomWalls() {
+    this.gridService.addRandomWalls(20);
+  }
+
+  resetGrid() {
+    this.gridService.refresh();
+  }
+
+  solve() {
+
+  }
+
 }

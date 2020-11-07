@@ -127,7 +127,7 @@ export class AStar implements SearchAlgorithm {
     this.open = [];
     this.closed = [];
     this.path = [];
-    this.grid.resetGrid();
+    this.grid.refreshGrid();
   }
 
 }
