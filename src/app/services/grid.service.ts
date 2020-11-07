@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import {Grid} from '../models/grid';
+import {SearchAlgorithm} from '../models/SearchAlgorithm';
+import {AnimationService} from './animation.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GridService {
   gridController: Grid;
-  constructor() { }
+  constructor(private animationService: AnimationService) { }
 
   createGrid(numOfCols, numOfRows) {
     this.gridController = new Grid(numOfCols, numOfRows)
@@ -28,5 +30,9 @@ export class GridService {
 
   addRandomWalls(wallProbability: number) {
     this.gridController.addRandomWalls(wallProbability);
+  }
+
+  solve(algorithm: SearchAlgorithm) {
+
   }
 }
