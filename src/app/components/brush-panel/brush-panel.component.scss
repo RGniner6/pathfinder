@@ -1,0 +1,32 @@
+.panel {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.label {
+  margin-bottom: 5px;
+  margin-right: 10px;
+}
+
+.brushes{
+  display: flex;
+}
+
+.brush {
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.icon {
+  border: 1px solid black;
+  height: 35px;
+  width: 35px;
+  margin: 0 auto;
+}
+
+.icon-label {
+  font-size: 12px;
+  text-align: center;
+  width: 100%;
+}

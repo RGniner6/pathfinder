@@ -12,10 +12,10 @@ export class AnimationService {
   path: Cell[];
   visited: Cell[];
   plugins = [CSSPlugin];
-  animationSpeed: number = 0;
+  animationSpeed: number = 5;
   timelineDefaults = {
     defaults: {
-      duration: .3,
+      duration: 1,
       ease: 'none',
     },
     paused: true,
@@ -53,22 +53,29 @@ export class AnimationService {
     this.visitedTl.clear();
     this.visitedTl.pause();
     this.visitedTl
-      .to(visited,
-        // {
-        //   backgroundColor: 'white',
-        //   scale: 0.5,
-        //   autoAlpha: 0,
-        // },
+      .fromTo(visited,
+        {
+          delay: 0.01,
+          scale: 0,
+          backgroundColor: 'blue',
+          autoAlpha: 0,
+          // borderRadius: '100%',
+        },
           {
           backgroundColor: 'yellow',
           scale: 1,
           autoAlpha: 1,
+          borderRadius: '0%',
+          ease: 'none',
           stagger: {
-            amount: 1
+            amount: 2
           }
         }, 'first')
       .to(path, {
         backgroundColor: '#FF4677',
+        duration: 0.1,
+        scale: 1,
+        ease: 'bounce',
         stagger: {
           amount: 0.5
         }

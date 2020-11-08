@@ -1,6 +1,7 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {Cell} from '../../models/cell';
 import {gsap} from 'gsap';
+import {BrushService} from '../../services/brush.service';
 
 @Component({
   selector: 'cell',
@@ -19,7 +20,7 @@ export class CellComponent implements OnInit {
 
   @ViewChild('tile', {static: true}) tile: ElementRef;
 
-  constructor() {
+  constructor(private brushService: BrushService) {
   }
 
   ngOnInit(): void {
@@ -47,6 +48,18 @@ export class CellComponent implements OnInit {
           this.path = false;
         }
       }
+  }
+
+  mouseOver() {
+    if (this.cell.type !== 'start' && this.cell.type !== 'end')
+      if (this.brushService.mouseDown) {
+        this.cell.type = this.brushService.brushSelected;
+      }
+  }
+
+  onClick() {
+    if (this.cell.type !== 'start' && this.cell.type !== 'end')
+      this.cell.type = this.brushService.brushSelected;
   }
 
 }
