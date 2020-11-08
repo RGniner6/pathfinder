@@ -12,7 +12,7 @@ export class AnimationService {
   path: Cell[];
   visited: Cell[];
   plugins = [CSSPlugin];
-  animationSpeed: number = 5;
+  animationSpeed: number = 0;
   timelineDefaults = {
     defaults: {
       duration: .3,
