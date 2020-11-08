@@ -41,13 +41,14 @@ export class AStar implements SearchAlgorithm {
     //Set distance to all cells at infinity, sets starting cell distance to 0
     this.reset();
     this.open.push(this.start)
+    this.visited.push(this.start);
     while (this.open.length) {
       this.sortOpen();
       current = this.open.shift();
       // console.log(`Open size: ${this.open.length}, current cost = ${current.cost}`);
       current.setClosed();
       this.closed.push(current);
-      this.visited.push(current);
+      // this.visited.push(current);
 
       if (current.type === 'end') {
         console.log(`Path found! Visited ${this.visited.length} cells`);
@@ -78,6 +79,8 @@ export class AStar implements SearchAlgorithm {
 
   getVisited() {
   }
+
+  //TODO G-cost needs to be the weight of the cell
 
   updateCostToNeighbour(current: Cell, neighbour: Cell) {
     // f = g + h

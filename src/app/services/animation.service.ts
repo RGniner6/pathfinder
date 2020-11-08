@@ -32,6 +32,7 @@ export class AnimationService {
   setAnimationArrays(visited: Cell[], path: Cell[]) {
     this.path = path;
     this.visited = visited;
+    // this.visited = Array.from(new Set(visited)); //to only keep unique cells in array;
   }
 
   playAnimation() {
