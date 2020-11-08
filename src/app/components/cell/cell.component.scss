@@ -1,29 +1,32 @@
 .cell {
   margin: 1px;
+  //width: 20px;
+  //height: 20px;
+  border: 1px solid rgba(0,0,0,0.5);
 }
 
 .tile {
   height: 100%;
   width: 100%;
-  border: 1px solid rgba(0,0,0,0.5);
+  background-color: white;
 }
 
 .start {
-  background-color: indianred;
+  background-color: indianred !important;
 }
 
 .end {
-  background-color: navy;
+  background-color: navy !important;
 }
 
 .wall {
-  background-color: black;
+  background-color: black !important;
 }
 
 .visited {
-  background-color: #ffe959;
+  background-color: #ffe959 !important;
 }
 
 .path {
-  background-color: #430000;
+  background-color: #430000 !important;
 }

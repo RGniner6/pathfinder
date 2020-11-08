@@ -29,7 +29,7 @@ export class GridComponent implements OnInit {
   }
 
   resetGrid() {
-    this.gridService.refresh();
+    this.gridService.refreshWithAnimation();
   }
 
   solve() {

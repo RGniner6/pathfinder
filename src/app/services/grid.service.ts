@@ -8,10 +8,12 @@ import {AnimationService} from './animation.service';
 })
 export class GridService {
   gridController: Grid;
-  constructor(private animationService: AnimationService) { }
+  constructor(private animationService: AnimationService) {
+  }
 
   createGrid(numOfCols, numOfRows) {
     this.gridController = new Grid(numOfCols, numOfRows)
+    this.animationService.setGrid(this.gridController);
     return this.gridController.grid;
   }
 
@@ -26,7 +28,13 @@ export class GridService {
   }
 
   refresh() {
+    // this.animationService.removeGsapStyles();
     this.animationService.resetGrid(this.gridController.getAllCells());
+    this.gridController.refresh();
+  }
+
+  refreshWithAnimation() {
+    this.animationService.resetGridWithAnimation(this.gridController.getAllCells());
     this.gridController.refresh();
   }
 

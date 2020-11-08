@@ -2,7 +2,7 @@ import {ElementRef} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 
 export class Cell {
-  type: CellType;
+  public type: CellType;
   //For pathfinding algos
   cost: number;
   closed: boolean;
@@ -13,9 +13,11 @@ export class Cell {
 
   //For Animations
   animate$ = new BehaviorSubject<string>('');
+  elementRef: ElementRef;
 
   constructor(public x, public y) {
     this.reset();
+    this.type = 'clear';
   }
 
   setStart() {

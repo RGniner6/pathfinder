@@ -20,11 +20,11 @@ export class CellComponent implements OnInit {
   @ViewChild('tile', {static: true}) tile: ElementRef;
 
   constructor() {
-
   }
 
   ngOnInit(): void {
     this.cell.animate$.subscribe( type => this.playAnimation(type));
+    this.cell.elementRef = this.tile.nativeElement;
   }
 
   setCell(cell: Cell) {

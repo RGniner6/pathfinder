@@ -101,8 +101,9 @@ export class Grid {
   getAllCells(): Cell[] {
     const cells: Cell[] = [];
     for (let row of this.grid)
-      for (let cell of row)
+      for (let cell of row) {
         cells.push(cell);
+      }
     return cells;
   }
 
