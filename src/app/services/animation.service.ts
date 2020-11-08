@@ -67,6 +67,12 @@ export class AnimationService {
             amount: 1
           }
         }, 'first')
+      .to(path, {
+        backgroundColor: '#FF4677',
+        stagger: {
+          amount: 0.5
+        }
+      })
     ;
     this.visitedTl.play();
   }

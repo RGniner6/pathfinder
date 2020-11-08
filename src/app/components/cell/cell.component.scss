@@ -5,10 +5,15 @@
   border: 1px solid rgba(0,0,0,0.5);
 }
 
-.tile {
+.type {
   height: 100%;
   width: 100%;
   background-color: white;
+}
+
+.tile {
+  height: 100%;
+  width: 100%;
 }
 
 .start {
@@ -28,5 +33,5 @@
 }
 
 .path {
-  background-color: #430000 !important;
+  background-color: #ff4677 !important;
 }
