@@ -57,7 +57,7 @@ export class CellComponent implements OnInit {
         && !this.isWaypoint(this.brushService.brushSelected)) {
         this.cell.type = this.brushService.brushSelected;
 
-      } else if (this.isWaypoint(this.brushService.brushSelected)) {
+      } else if (this.isWaypoint(this.brushService.brushSelected) && this.waypointBeMovedHere()) {
         this.placeholder = this.brushService.brushSelected;
       }
     }
@@ -66,9 +66,6 @@ export class CellComponent implements OnInit {
   mouseOut() {
     if (this.brushService.mouseDown && this.isWaypoint(this.brushService.brushSelected)) {
       this.placeholder = null;
-      // if (this.isWaypoint(this.cell.type)) {
-      //
-      // }
     }
   }
 
