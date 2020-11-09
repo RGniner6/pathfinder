@@ -1,7 +1,9 @@
 <div class="cell"
      [ngStyle]="{'height': size+'px', 'width': size+'px'}"
      (mouseover)="mouseOver()"
-     (mousedown)="onClick()">
+     (mousedown)="onClick()"
+     (mouseup)="mouseUp()"
+>
   <div class="type"
        [ngClass]="cell.type">
     <div #tile class="tile"

@@ -1,6 +1,6 @@
 import {Injectable, Renderer2} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
-import {CellType} from '../models/cell';
+import {Cell, CellType} from '../models/cell';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,8 @@ export class BrushService {
 
   mouseDown: boolean;
   brushSelected: CellType = 'wall';
-  handleKeyPress: Function;
+  prevCell: Cell;
+  nextCell: Cell;
   constructor() {
   }
 
@@ -19,5 +20,11 @@ export class BrushService {
 
   listenToBrushChanges(selectedBrush$: BehaviorSubject<CellType>) {
     selectedBrush$.subscribe(brush => this.brushSelected = brush);
+  }
+
+
+  clearCells() {
+    this.prevCell = null;
+    this.nextCell = null;
   }
 }

@@ -51,15 +51,39 @@ export class CellComponent implements OnInit {
   }
 
   mouseOver() {
-    if (this.cell.type !== 'start' && this.cell.type !== 'end')
-      if (this.brushService.mouseDown) {
+    if (this.brushService.mouseDown) {
+      if (this.cell.type !== 'start'
+        && this.cell.type !== 'end'
+        && this.brushService.brushSelected !== 'start'
+        && this.brushService.brushSelected !== 'end') {
         this.cell.type = this.brushService.brushSelected;
+      } else {
+
       }
+    }
   }
 
   onClick() {
-    if (this.cell.type !== 'start' && this.cell.type !== 'end')
+    if (this.cell.type !== 'start'
+      && this.cell.type !== 'end'
+      && this.brushService.brushSelected !== 'start'
+      && this.brushService.brushSelected !== 'end')
       this.cell.type = this.brushService.brushSelected;
+    else if (this.cell.type == 'start'
+      || this.cell.type == 'end'){
+      console.log(`onclick reached`)
+      this.brushService.brushSelected = this.cell.type;
+      this.brushService.prevCell = this.cell;
+    }
+  }
+
+  mouseUp() {
+    if (this.cell.type !== 'start' && this.cell.type !== 'end'
+      && (this.brushService.brushSelected == 'start' || this.brushService.brushSelected == 'end')) {
+      this.cell.type = this.brushService.brushSelected;
+      this.brushService.prevCell.type = 'clear';
+      this.brushService.brushSelected = 'wall';
+    }
   }
 
 }

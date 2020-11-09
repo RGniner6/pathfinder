@@ -41,8 +41,9 @@ export class GridComponent implements OnInit {
     this.gridService.solve(new AStar());
   }
 
-  @HostListener('window:mousedown')
+  @HostListener('window:mousedown', ['$event'])
   mouseDown() {
+    event.preventDefault();
     this.mouseDown$.next(true);
   }
 
