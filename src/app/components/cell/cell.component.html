@@ -3,9 +3,10 @@
      (mouseover)="mouseOver()"
      (mousedown)="onClick()"
      (mouseup)="mouseUp()"
+     (mouseout)="mouseOut()"
 >
   <div class="type"
-       [ngClass]="cell.type">
+       [ngClass]="tileToDisplay" [class.placeholder]="!!placeholder">
     <div #tile class="tile"
          [class.path]="path"
          [class.visited]="visited">

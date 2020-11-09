@@ -16,8 +16,16 @@
   width: 100%;
 }
 
+.placeholder {
+  opacity: 50%;
+}
+
 .start {
-  background-color: indianred !important;
+  background-color: #cd5c5c !important;
+
+  //&.placeholder {
+  //  background-color: rgba(205, 92, 92, 0.5) !important;
+  //}
 }
 
 .end {
