@@ -1,9 +1,0 @@
-<div class="panel">
-  <div class="label">Select Brush:</div>
-  <div class="brushes">
-    <div class="brush" *ngFor="let brush of brushes" (click)="selectBrush(brush)">
-      <div class="icon" [ngClass]="brush"></div>
-      <div class="icon-label">{{brush | titlecase}}</div>
-    </div>
-  </div>
-</div>
