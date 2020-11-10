@@ -1,0 +1,48 @@
+.panel {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.brush-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  text-align: center;
+  font-size: 12px;
+  margin-bottom: 5px;
+  //margin-right: 10px;
+}
+
+.brushes{
+  display: flex;
+}
+
+.brush {
+  cursor: pointer;
+  margin-right: 15px;
+  padding: 0 5px;
+}
+
+.icon {
+  border: .1px solid rgba(214, 214, 214, 0.5);
+  height: 25px;
+  width: 25px;
+  margin: 0 auto;
+}
+
+.icon-label {
+  font-size: 12px;
+  display: none;
+  text-align: center;
+  width: 100%;
+}
+
+.quick-actions {
+  margin-top: 20px;
+  &>*:not(:last-child) {
+    margin-right: 10px;
+  }
+}
