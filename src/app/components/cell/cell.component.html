@@ -6,7 +6,10 @@
      (mouseout)="mouseOut()"
 >
   <div class="type"
-       [ngClass]="tileToDisplay" [class.placeholder]="!!placeholder">
+       [ngClass]="tileToDisplay"
+       [class.placeholder]="!!placeholder"
+       [class.no-drop]="noDrop"
+  >
     <div #tile class="tile"
          [class.path]="path"
          [class.visited]="visited">

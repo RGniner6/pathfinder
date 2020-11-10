@@ -20,6 +20,7 @@
 
 .start {
   background-color: #cd5c5c !important;
+  cursor: move;
 
   //&.placeholder {
   //  background-color: rgba(205, 92, 92, 0.5) !important;
@@ -28,6 +29,7 @@
 
 .end {
   background-color: navy !important;
+  cursor: move;
 }
 
 .wall {
@@ -44,6 +46,10 @@
 
 .path {
   background-color: #ff4677 !important;
+}
+
+.no-drop {
+  cursor: no-drop;
 }
 
 

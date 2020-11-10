@@ -18,6 +18,7 @@ export class CellComponent implements OnInit {
   visited: boolean = false;
   path: boolean = false;
   placeholder: CellType;
+  noDrop: boolean = false;
 
   @ViewChild('tile', {static: true}) tile: ElementRef;
 
@@ -53,12 +54,15 @@ export class CellComponent implements OnInit {
 
   mouseOver() {
     if (this.brushService.mouseDown) {
+      this.noDrop = false;
       if (!this.isWaypoint(this.cell.type)
         && !this.isWaypoint(this.brushService.brushSelected)) {
         this.cell.type = this.brushService.brushSelected;
 
       } else if (this.isWaypoint(this.brushService.brushSelected) && this.waypointBeMovedHere()) {
         this.placeholder = this.brushService.brushSelected;
+      } else if (!this.waypointBeMovedHere() && this.isWaypoint(this.brushService.brushSelected) && this.brushService.brushSelected !== this.cell.type) {
+        this.noDrop = true;
       }
     }
   }
