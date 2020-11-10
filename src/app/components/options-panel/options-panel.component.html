@@ -1,9 +1,3 @@
-<div class="grid">
-  <div class="column" *ngFor="let column of grid; let x = index">
-    <cell *ngFor="let cell of column" [cell]="cell"></cell>
-  </div>
-</div>
-
 <div class="quick-actions">
   <button (click)="clearObstacles()">Clear walls</button>
   <button (click)="addRandomWalls()">Random Walls</button>
