@@ -2,6 +2,7 @@ import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {Cell, CellType} from '../../models/cell';
 import {gsap} from 'gsap';
 import {BrushService} from '../../services/brush.service';
+import {GridService} from '../../services/grid.service';
 
 @Component({
   selector: 'cell',
@@ -22,7 +23,8 @@ export class CellComponent implements OnInit {
 
   @ViewChild('tile', {static: true}) tile: ElementRef;
 
-  constructor(private brushService: BrushService) {
+  constructor(private brushService: BrushService,
+              private gridService: GridService) {
   }
 
   ngOnInit(): void {
@@ -80,6 +82,7 @@ export class CellComponent implements OnInit {
     else if (this.isWaypoint(this.cell.type)) {
       this.brushService.brushSelected = this.cell.type;
       this.brushService.prevCell = this.cell;
+      this.gridService.refresh();
     }
   }
 
