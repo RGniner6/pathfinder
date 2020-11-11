@@ -1,6 +1,6 @@
 .cell {
   //margin: 1px;
-  border: .1px solid rgba(214, 214, 214, 0.5);
+  //border: .1px solid rgba(214, 214, 214, 0.5);
 }
 
 .type {
@@ -21,6 +21,7 @@
 .start {
   background-color: #cd5c5c !important;
   cursor: move;
+  //border-radius: 100%;
 
   //&.placeholder {
   //  background-color: rgba(205, 92, 92, 0.5) !important;
