@@ -60,7 +60,7 @@ export class AnimationService {
           scale: 0,
           backgroundColor: 'blue',
           autoAlpha: 0,
-          // borderRadius: '100%',
+          borderRadius: '100%',
         },
           {
           backgroundColor: 'yellow',

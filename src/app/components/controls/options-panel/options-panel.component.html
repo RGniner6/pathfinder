@@ -1,7 +1,20 @@
-<div class="quick-actions">
+<div class="options-panel">
   <div class="algorithms">
     <h3>Search Algorithm</h3>
+      <form [formGroup]="form">
+
+        <div class="custom-select">
+          <select name="algorithms" id="algorithms"
+                                            formControlName="algorithm">
+            <option value="dfs">DFS</option>
+            <option value="bfs">BFS</option>
+            <option value="dijkstra">Dijkstra</option>
+            <option value="astar">A Star</option>
+          </select>
+          <span class="custom-arrow"></span>
+        </div>
+      </form>
 
   </div>
-  <button (click)="solve()">Solve</button>
+  <button class="solve" (click)="solve()">Solve</button>
 </div>

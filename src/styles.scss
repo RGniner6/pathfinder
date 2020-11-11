@@ -4,6 +4,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  //outline: none;
 }
 
 body {
@@ -31,7 +32,21 @@ button {
     background-color: #2EE59D;
     //box-shadow: 0 15px 20px rgba(46, 229, 157, 0.4);
     color: #fff;
-    transform: translateY(-5px);
+    transform: translateY(-2px);
   }
 
+}
+
+select {
+  padding: 10px 20px;
+  background-color: #4d5061;
+  color: #fff;
+  border: 0;
+  width: 100%;
+  border-radius: 15px;
+
+  option {
+    padding: 5px 10px;
+    border: 1px solid white;
+  }
 }
