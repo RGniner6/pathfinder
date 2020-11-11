@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Cell} from '../models/cell';
 import {Grid} from '../models/grid';
-import {gsap, CSSPlugin} from 'gsap'
+import {CSSPlugin, gsap} from 'gsap';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +11,7 @@ export class AnimationService {
   grid: Grid;
   path: Cell[];
   visited: Cell[];
-  plugins = [CSSPlugin];
-  animationSpeed: number = 5;
+  animationSpeed: number = 30;
   timelineDefaults = {
     defaults: {
       duration: 1,
@@ -35,8 +34,8 @@ export class AnimationService {
     // this.visited = Array.from(new Set(visited)); //to only keep unique cells in array;
   }
 
-  playAnimation() {
-    if (this.animationSpeed === 0) {
+  playAnimation(skipAnimation: boolean = false) {
+    if (this.animationSpeed === 0 || skipAnimation) {
       this.visited.forEach(cell => cell.animate('visited'));
       this.path.forEach(cell => cell.animate('path'));
     } else {
@@ -69,7 +68,7 @@ export class AnimationService {
           borderRadius: '0%',
           ease: 'none',
           stagger: {
-            amount: 2
+            amount: 5
           }
         }, 'first')
       .to(path, {
@@ -104,5 +103,13 @@ export class AnimationService {
     const allCells = this.grid.getAllCells();
     this.visitedTl.clear();
     gsap.set(allCells, {clearProps:"all"} )
+  }
+
+  setSpeed(animationSpeed) {
+    this.animationSpeed = animationSpeed;
+  }
+
+  getDuration(min: number, max: number) {
+    return (max - min) * this.animationSpeed/100;
   }
 }

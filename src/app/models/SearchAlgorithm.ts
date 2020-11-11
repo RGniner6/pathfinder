@@ -1,5 +1,6 @@
-import {Grid} from "./grid";
-import {Cell} from "./cell";
+import {Grid} from './grid';
+import {Cell} from './cell';
+import {Heuristic} from '../algorithms/heurisitics';
 
 export interface SearchAlgorithm {
   grid: Grid;
@@ -7,7 +8,7 @@ export interface SearchAlgorithm {
   path: Cell[];
   distanceMatrix: number[][];
 
-  findPath(grid: Grid): { path: Cell[], visited: Cell[] };
+  findPath(grid: Grid, heuristic?: Heuristic): { path: Cell[], visited: Cell[] };
   getVisited();
   setGrid(grid: Grid);
 }

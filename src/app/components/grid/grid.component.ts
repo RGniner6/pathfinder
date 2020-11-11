@@ -1,8 +1,6 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {Cell} from '../../models/cell';
 import {GridService} from '../../services/grid.service';
-import {Dijkstra} from '../../algorithms/Dijkstra';
-import {AStar} from '../../algorithms/AStar';
 import {BrushService} from '../../services/brush.service';
 import {BehaviorSubject} from 'rxjs';
 
@@ -23,22 +21,6 @@ export class GridComponent implements OnInit {
     this.grid = this.gridService.createGrid(30, 25);
     this.gridService.setStartAndEnd([8,10], [25, 10]);
     this.brushService.listenToMouseChanges(this.mouseDown$);
-  }
-
-  clearObstacles() {
-      this.gridService.clearObstacles();
-  }
-
-  addRandomWalls() {
-    this.gridService.addRandomWalls(20);
-  }
-
-  resetGrid() {
-    this.gridService.refresh();
-  }
-
-  solve() {
-    this.gridService.solve(new AStar());
   }
 
   @HostListener('mousedown', ['$event'])

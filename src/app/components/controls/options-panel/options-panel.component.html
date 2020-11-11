@@ -1,20 +1,50 @@
 <div class="options-panel">
   <div class="algorithms">
-    <h3>Search Algorithm</h3>
+    <h3>Search Options:</h3>
       <form [formGroup]="form">
 
-        <div class="custom-select">
-          <select name="algorithms" id="algorithms"
-                                            formControlName="algorithm">
-            <option value="dfs">DFS</option>
-            <option value="bfs">BFS</option>
-            <option value="dijkstra">Dijkstra</option>
-            <option value="astar">A Star</option>
-          </select>
-          <span class="custom-arrow"></span>
+        <div class="algorithm-panel form-group">
+          <p class="label">Search Algorithm</p>
+          <div class="custom-select">
+            <select name="algorithms" formControlName="algorithm">
+              <option value="dfs">DFS</option>
+              <option value="bfs">BFS</option>
+              <option *ngFor="let algorithm of algorithms"
+                      [ngValue]="algorithm.algorithm">
+                {{algorithm.name}}
+              </option>
+<!--              <option [ngValue]="algorithms[1]">Dijkstra</option>-->
+<!--              <option [ngValue]="algorithms[0]">A Star</option>-->
+            </select>
+            <span class="custom-arrow"></span>
+          </div>
         </div>
+
+        <!--  TODO: Allow diagnonal movement      -->
+        <div class="heuristic-panel form-group">
+          <p class="label">Heuristic Function</p>
+          <div class="custom-select">
+            <select name="heuristic" formControlName="heuristic">
+              <option *ngFor="let heuristic of heuristics"
+                      [ngValue]="heuristic.heuristic">
+                {{heuristic.name}}
+              </option>
+<!--              <option [ngValue]="heuristics[0]">Manhattan distance</option>-->
+<!--              <option [ngValue]="heuristics[1]">Euclidean Distance</option>-->
+            </select>
+            <span class="custom-arrow"></span>
+          </div>
+        </div>
+
+        <div class="animation-panel form-group">
+          <p class="label">Animation speed:</p>
+          <div class="slider-container">
+            <input type="range" min="0" max="100" value="50" class="slider" formControlName="animationSpeed">
+          </div>
+        </div>
+
       </form>
 
   </div>
-  <button class="solve" (click)="solve()">Solve</button>
+  <button class="solve" (click)="solve()">Find Path</button>
 </div>

@@ -1,6 +1,7 @@
-import {SearchAlgorithm} from "../models/SearchAlgorithm";
-import {Grid} from "../models/grid";
-import {Cell} from "../models/cell";
+import {SearchAlgorithm} from '../models/SearchAlgorithm';
+import {Grid} from '../models/grid';
+import {Cell} from '../models/cell';
+import {Heuristic} from './heurisitics';
 
 export class AStar implements SearchAlgorithm {
   distanceMatrix: number[][];
@@ -9,10 +10,12 @@ export class AStar implements SearchAlgorithm {
   open: Cell[]; //Set of nodes to be evaluated
   closed: Cell[]; //Set of nodes already evaluated
   visited: Cell[]; //Just used to animate the order cells were visited in
-  costFunction: (cell1: Cell, cell2: Cell) => number
+  costFunction: Heuristic;
 
   end: Cell;
   start: Cell;
+
+  // http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html#S7
 
   /**
    * loop (while OPEN is !empty)
@@ -35,8 +38,9 @@ export class AStar implements SearchAlgorithm {
    */
 
 
-  findPath(grid: Grid): { path: Cell[]; visited: Cell[] } {
+  findPath(grid: Grid, heuristic: Heuristic = this.manhattanDistance): { path: Cell[]; visited: Cell[] } {
     this.setGrid(grid);
+    this.costFunction = heuristic;
     let current: Cell;
     //Set distance to all cells at infinity, sets starting cell distance to 0
     this.reset();
@@ -132,8 +136,8 @@ export class AStar implements SearchAlgorithm {
     this.start = this.grid.start;
     this.end = this.grid.end;
     this.costFunction = this.manhattanDistance;
-
   }
+
 
   reset() {
     this.visited = [];

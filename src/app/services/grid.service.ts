@@ -1,13 +1,17 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Grid} from '../models/grid';
 import {SearchAlgorithm} from '../models/SearchAlgorithm';
 import {AnimationService} from './animation.service';
+import {AStar} from '../algorithms/AStar';
+import {Heuristic, manhattanDistance} from '../algorithms/heurisitics';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GridService {
   gridController: Grid;
+  algorithm: SearchAlgorithm = new AStar();
+  heuristic: Heuristic = manhattanDistance;
   constructor(private animationService: AnimationService) {
   }
 
@@ -43,10 +47,15 @@ export class GridService {
     this.gridController.addRandomWalls(wallProbability);
   }
 
-  solve(algorithm: SearchAlgorithm) {
+  solve() {
     this.refresh();
-    const {visited, path} = algorithm.findPath(this.gridController);
+    const {visited, path} = this.algorithm.findPath(this.gridController, this.heuristic);
     this.animationService.setAnimationArrays(visited, path);
     this.animationService.playAnimation();
+  }
+
+  setOptions(algorithm: SearchAlgorithm, heuristic: Heuristic) {
+    this.algorithm = algorithm;
+    this.heuristic = heuristic;
   }
 }

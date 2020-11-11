@@ -1,10 +1,10 @@
 .options-panel {
   position: relative;
   border: .1px solid rgba(214, 214, 214, 0.5);
-  padding: 20px 10px;
+  padding: 20px 10px 65px 10px;
   border-radius: 15px;
   min-width: 400px;
-  min-height: 400px;
+  //min-height: 400px;
 }
 
 form {
@@ -22,23 +22,35 @@ form {
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
+.form-group {
+  margin: 20px 0;
+
+  .label {
+    margin-bottom: 5px;
+    font-size: 13px;
+  }
+}
+
 .custom-select {
   position: relative;
 }
 
 .custom-arrow {
   $arrow-size: .4em;
-  $color-button : #3b3c47;
-  $color-arrow: rgba(255,255,255, 0.5);
+  $color-button : #fff;
+  $color-arrow: rgba(0,0,0, 0.5);
 
   display: block;
   position: absolute;
+  outline: none;
   top: 0;
   right: 0;
   height: 100%;
   background: $color-button;
+  border: .1px solid rgba(214, 214, 214, 0.5);
+  border-left: none;
   width: 2.5rem;
-  border-radius: 15px;
+  border-radius: 0 15px 15px 0;
   pointer-events: none;
 
   &::before, &::after {
@@ -67,3 +79,48 @@ form {
     //top: 35%;
   }
 }
+
+.slider-container {
+  width: 100%;
+}
+
+.slider {
+  $slider-height: 20px;
+  $thumb-width: 25px;
+  $thumb-color: #2EE59D;
+  $border-radius: 15px;
+
+  -webkit-appearance: none;
+  width: 100%;
+  height: $slider-height;
+  border-radius: $border-radius;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: $thumb-width;
+    height: $slider-height;
+    border-radius: $border-radius;
+    background: $thumb-color;
+    cursor: pointer;
+  }
+
+  &::-moz-range-thumb {
+    width: $thumb-width;
+    height: $slider-height;
+    border-radius: $border-radius;
+    background: $thumb-color;
+    cursor: pointer;
+  }
+
+}
+

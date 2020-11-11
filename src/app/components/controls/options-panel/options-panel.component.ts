@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {AStar} from '../../../algorithms/AStar';
+import {Component, OnInit} from '@angular/core';
 import {GridService} from '../../../services/grid.service';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {debounceTime} from 'rxjs/operators';
+import {AnimationService} from '../../../services/animation.service';
+import {AlgorithmOption, algorithmOptions, HeuristicOption, heuristicOptions} from '../../../models/options';
 
 @Component({
   selector: 'app-options-panel',
@@ -11,21 +13,36 @@ import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 export class OptionsPanelComponent implements OnInit {
 
   form: FormGroup
-  selectedAlgo = new FormControl('');
+  algorithms: AlgorithmOption[] = algorithmOptions;
+  heuristics: HeuristicOption[] = heuristicOptions;
+
   constructor(private gridService: GridService,
-              private fb: FormBuilder) { }
+              private animationService: AnimationService,
+              private fb: FormBuilder) {
+    // this.algorithms.push(new AStar())
+    this.form = this.fb.group({
+      algorithm: [this.algorithms[0].algorithm],
+      heuristic: [this.heuristics[0].heuristic],
+      animationSpeed: [50],
+    });
+  }
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-      algorithm: ['astar'],
-      heuristic: [''],
-      animationSpeed: [''],
-    })
-
+    this.form.valueChanges
+      .pipe(debounceTime(500))
+      .subscribe(() => this.updateOptions());
+    this.updateOptions();
   }
 
   solve() {
-    this.gridService.solve(new AStar());
+    this.gridService.solve();
+  }
+
+  updateOptions() {
+    const options = Object.assign({}, this.form.value);
+    console.log(options);
+    this.gridService.setOptions(options.algorithm, options.heuristic);
+    this.animationService.setSpeed(options.animationSpeed);
   }
 
 }
