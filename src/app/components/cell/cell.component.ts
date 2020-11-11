@@ -55,8 +55,8 @@ export class CellComponent implements OnInit {
   }
 
   mouseOver() {
+    this.noDrop = false;
     if (this.brushService.mouseDown) {
-      this.noDrop = false;
       if (!this.isWaypoint(this.cell.type)
         && !this.isWaypoint(this.brushService.brushSelected)) {
         this.cell.type = this.brushService.brushSelected;
