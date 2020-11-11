@@ -62,6 +62,9 @@ export class AStar implements SearchAlgorithm {
         if (this.closed.includes(neighbour) || neighbour.type === 'wall')
           continue;
 
+        //Second conditional needs to be replaced with:
+        // If cost from current to neighbour (current.gCost + neighbour.cost)
+        // is less than neighbour.gCost, then {}
         if (!this.open.includes(neighbour)
           || this.costFunction(current, neighbour) < neighbour.gCost) {
           this.updateCostToNeighbour(current, neighbour);
@@ -81,6 +84,7 @@ export class AStar implements SearchAlgorithm {
   }
 
   //TODO G-cost needs to be the weight of the cell
+  //TODO Previously explored cells are not updated when cheaper path to it is found
 
   updateCostToNeighbour(current: Cell, neighbour: Cell) {
     // f = g + h
