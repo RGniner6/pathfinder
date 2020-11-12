@@ -1,6 +1,6 @@
-import {SearchAlgorithm} from "../models/SearchAlgorithm";
-import {Grid} from "../models/grid";
-import {Cell} from "../models/cell";
+import {SearchAlgorithm} from '../models/SearchAlgorithm';
+import {Grid} from '../models/grid';
+import {Cell} from '../models/cell';
 
 export class Dijkstra implements SearchAlgorithm {
   distanceMatrix: number[][];
@@ -58,7 +58,7 @@ export class Dijkstra implements SearchAlgorithm {
   updateDistanceOfNeighbours(current: Cell) {
     const unvisited = this.grid.getUnvisitedNeighbors(current);
     for (const neighbour of unvisited) {
-      neighbour.cost = current.cost + 1;
+      neighbour.cost = current.cost + neighbour.weight;
       neighbour.prevCell = current;
     }
   }
