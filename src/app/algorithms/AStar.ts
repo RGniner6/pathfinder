@@ -84,11 +84,6 @@ export class AStar implements SearchAlgorithm {
     return {path: [], visited: this.visited};
   }
 
-  getVisited() {
-  }
-
-  //TODO Previously explored cells are not updated when cheaper path to it is found
-
   updateCostToNeighbour(current: Cell, neighbour: Cell) {
     // f = g + h
     //totalCost = cost to current from start + estimated cost to destination from current
