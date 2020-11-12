@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Cell} from '../models/cell';
 import {Grid} from '../models/grid';
-import {CSSPlugin, gsap} from 'gsap';
+import {gsap} from 'gsap';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +36,7 @@ export class AnimationService {
 
   playAnimation(skipAnimation: boolean = false) {
     if (this.animationSpeed === 0 || skipAnimation) {
+      this.clearProps()
       this.visited.forEach(cell => cell.animate('visited'));
       this.path.forEach(cell => cell.animate('path'));
     } else {
@@ -55,20 +56,21 @@ export class AnimationService {
     this.visitedTl
       .fromTo(visited,
         {
-          delay: 0.01,
           scale: 0,
           backgroundColor: 'blue',
           autoAlpha: 0,
           borderRadius: '100%',
         },
           {
+          duration: this.getDuration(0.5, 2),
           backgroundColor: 'yellow',
           scale: 1,
           autoAlpha: 1,
           borderRadius: '0%',
           ease: 'none',
           stagger: {
-            amount: 5
+            // amount: this.getDuration(0.5, 3.5)
+            each: this.getDuration(0.01, 0.07)
           }
         }, 'first')
       .to(path, {
@@ -77,10 +79,19 @@ export class AnimationService {
         scale: 1,
         ease: 'bounce',
         stagger: {
-          amount: 0.5
+          amount: this.getDuration(0.2, 1.2)
         }
       })
     ;
+    this.visitedTl.play();
+  }
+
+  clearProps() {
+    this.visitedTl.invalidate();
+    this.visitedTl.clear();
+    this.visitedTl.set(this.allCellReferences, {
+      clearProps: true,
+    })
     this.visitedTl.play();
   }
 
@@ -88,6 +99,7 @@ export class AnimationService {
       this.visitedTl.pause(0);
       this.visitedTl.clear();
       cells.forEach(cell => cell.animate(''));
+      console.log(`resetGrid() called`)
   }
 
   resetGridWithAnimation(cells: Cell[]) {
@@ -96,20 +108,17 @@ export class AnimationService {
     // this.visitedTl.reverse().timeScale(3);
   }
 
-  removeGsapStyles() {
-    // this.visitedTl.pause(0);
-    // this.visitedTl.clear();
-    gsap.registerPlugin(CSSPlugin);
-    const allCells = this.grid.getAllCells();
-    this.visitedTl.clear();
-    gsap.set(allCells, {clearProps:"all"} )
-  }
-
   setSpeed(animationSpeed) {
-    this.animationSpeed = animationSpeed;
+    this.animationSpeed = 100 - animationSpeed;
   }
 
   getDuration(min: number, max: number) {
-    return (max - min) * this.animationSpeed/100;
+    return min + (max - min) * this.animationSpeed/100;
+  }
+
+  get allCellReferences() {
+    return this.grid.getAllCells()
+      // .filter(cell => cell.type !== 'start' && cell.type !== 'end')
+      .map(cell => cell.elementRef);
   }
 }

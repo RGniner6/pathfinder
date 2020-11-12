@@ -9,18 +9,20 @@ export interface Options {
   animationSpeed: number;
 }
 
-export interface AlgorithmOption {name: string, algorithm: SearchAlgorithm}
+export interface AlgorithmOption {name: string, algorithm: SearchAlgorithm, needsHeuristic: boolean}
 export interface HeuristicOption {name: string, heuristic: Heuristic}
 
 export const algorithmOptions: AlgorithmOption[] = [
 
   {
     name: 'A Star Search',
-    algorithm: new AStar()
+    algorithm: new AStar(),
+    needsHeuristic: true,
   },
   {
     name: `Dijkstra's Algorithm`,
-    algorithm: new Dijkstra()
+    algorithm: new Dijkstra(),
+    needsHeuristic: false,
   },
 ]
 

@@ -47,11 +47,11 @@ export class GridService {
     this.gridController.addRandomWalls(wallProbability);
   }
 
-  solve() {
+  solve(skipAnimation: boolean = false) {
     this.refresh();
     const {visited, path} = this.algorithm.findPath(this.gridController, this.heuristic);
     this.animationService.setAnimationArrays(visited, path);
-    this.animationService.playAnimation();
+    this.animationService.playAnimation(skipAnimation);
   }
 
   setOptions(algorithm: SearchAlgorithm, heuristic: Heuristic) {

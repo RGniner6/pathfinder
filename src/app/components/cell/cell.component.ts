@@ -59,11 +59,12 @@ export class CellComponent implements OnInit {
     if (this.brushService.mouseDown) {
       if (!this.isWaypoint(this.cell.type)
         && !this.isWaypoint(this.brushService.brushSelected)) {
+        this.clearProps();
         this.cell.type = this.brushService.brushSelected;
 
-      } else if (this.isWaypoint(this.brushService.brushSelected) && this.waypointBeMovedHere()) {
+      } else if (this.isWaypoint(this.brushService.brushSelected) && this.canWaypointBeMovedHere()) {
         this.placeholder = this.brushService.brushSelected;
-      } else if (!this.waypointBeMovedHere() && this.isWaypoint(this.brushService.brushSelected) && this.brushService.brushSelected !== this.cell.type) {
+      } else if (!this.canWaypointBeMovedHere() && this.isWaypoint(this.brushService.brushSelected) && this.brushService.brushSelected !== this.cell.type) {
         this.noDrop = true;
       }
     }
@@ -78,6 +79,7 @@ export class CellComponent implements OnInit {
   onClick() {
     if (!this.isWaypoint(this.cell.type) && !this.isWaypoint(this.brushService.brushSelected)) {
       this.cell.type = this.brushService.brushSelected;
+      this.clearProps();
     }
     else if (this.isWaypoint(this.cell.type)) {
       this.brushService.brushSelected = this.cell.type;
@@ -88,35 +90,37 @@ export class CellComponent implements OnInit {
 
   mouseUp() {
     if (this.isWaypoint(this.brushService.brushSelected)) {
-      if (this.waypointBeMovedHere()) {
+      if (this.canWaypointBeMovedHere()) {
         this.cell.type = this.brushService.brushSelected;
         this.brushService.prevCell.type = 'clear';
         this.brushService.brushSelected = 'wall';
         this.placeholder = null;
-
       } else {
         this.placeholder = null;
       }
     }
-    // if (!this.isWaypoint(this.cell.type) && this.isWaypoint(this.brushService.brushSelected)) {
-    //
-    // }
   }
 
   isWaypoint(type: CellType) {
     return type == 'start' || type == 'end';
   }
 
-  waypointBeMovedHere() {
+  canWaypointBeMovedHere() {
     if (this.isWaypoint(this.cell.type))
       return false;
     return this.cell.type != 'wall';
   }
 
   get tileToDisplay() {
-    if (this.waypointBeMovedHere())
+    if (this.canWaypointBeMovedHere())
       return this.placeholder || this.cell.type;
     return this.cell.type;
+  }
+
+  clearProps() {
+    gsap.set(this.tile.nativeElement, {
+      clearProps: true,
+    })
   }
 
 }

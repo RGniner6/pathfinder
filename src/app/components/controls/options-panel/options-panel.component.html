@@ -7,8 +7,6 @@
           <p class="label">Search Algorithm</p>
           <div class="custom-select">
             <select name="algorithms" formControlName="algorithm">
-              <option value="dfs">DFS</option>
-              <option value="bfs">BFS</option>
               <option *ngFor="let algorithm of algorithms"
                       [ngValue]="algorithm.algorithm">
                 {{algorithm.name}}
@@ -39,7 +37,7 @@
         <div class="animation-panel form-group">
           <p class="label">Animation speed:</p>
           <div class="slider-container">
-            <input type="range" min="0" max="100" value="50" class="slider" formControlName="animationSpeed">
+            <input type="range" min="1" max="100" value="50" class="slider" formControlName="animationSpeed">
           </div>
         </div>
 
