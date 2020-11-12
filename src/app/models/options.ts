@@ -4,6 +4,7 @@ import {AStar} from '../algorithms/AStar';
 import {Dijkstra} from '../algorithms/Dijkstra';
 import {BFS} from '../algorithms/BFS';
 import {DFS} from '../algorithms/DFS';
+import {GreedyBFS} from '../algorithms/GreedyBFS';
 
 export interface Options {
   algorithm: SearchAlgorithm;
@@ -26,6 +27,12 @@ export const algorithmOptions: AlgorithmOption[] = [
     name: `Dijkstra's Algorithm`,
     algorithm: new Dijkstra(),
     needsHeuristic: false,
+    weighted: true,
+  },
+  {
+    name: `Greedy Best First Search`,
+    algorithm: new GreedyBFS(),
+    needsHeuristic: true,
     weighted: true,
   },
   {

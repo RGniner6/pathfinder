@@ -56,8 +56,8 @@ export class CellComponent implements OnInit {
   }
 
   mouseOver() {
-    this.noDrop = false;
     if (this.brushService.mouseDown) {
+      this.noDrop = false;
       if (!this.isWaypoint(this.cell.type)
         && !this.isWaypoint(this.brushService.brushSelected)) {
         this.clearProps();
@@ -75,6 +75,7 @@ export class CellComponent implements OnInit {
     if (this.brushService.mouseDown && this.isWaypoint(this.brushService.brushSelected)) {
       this.placeholder = null;
     }
+    this.noDrop = false;
   }
 
   onClick() {
@@ -127,7 +128,7 @@ export class CellComponent implements OnInit {
   get icon() {
     if (this.cell.type !== 'clear' && this.cell.type !== 'wall')
       return this.cell.type;
-    // else if (this.placeholder)
+    // if (this.placeholder)
     //   return this.placeholder;
     return false;
   }

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {Cell, CellType} from '../../../models/cell';
+import {Component, OnInit} from '@angular/core';
+import {CellType} from '../../../models/cell';
 import {BrushService} from '../../../services/brush.service';
 import {BehaviorSubject} from 'rxjs';
 import {GridService} from '../../../services/grid.service';
@@ -37,6 +37,10 @@ export class BrushPanelComponent implements OnInit {
 
   resetGrid() {
     this.gridService.refresh();
+  }
+
+  get selectedBrush() {
+    return this.brushService.brushSelected;
   }
 
 }

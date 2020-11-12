@@ -1,7 +1,7 @@
 import {SearchAlgorithm} from '../models/SearchAlgorithm';
 import {Grid} from '../models/grid';
 import {Cell} from '../models/cell';
-import {Heuristic} from './heurisitics';
+import {Heuristic, manhattanDistance} from './heurisitics';
 
 export class AStar implements SearchAlgorithm {
   distanceMatrix: number[][];
@@ -38,7 +38,7 @@ export class AStar implements SearchAlgorithm {
    */
 
 
-  findPath(grid: Grid, heuristic: Heuristic = this.manhattanDistance): { path: Cell[]; visited: Cell[] } {
+  findPath(grid: Grid, heuristic: Heuristic = manhattanDistance): { path: Cell[]; visited: Cell[] } {
     this.setGrid(grid);
     this.costFunction = heuristic;
     let current: Cell;
