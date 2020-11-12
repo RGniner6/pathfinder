@@ -1,15 +1,13 @@
 .options-panel {
   position: relative;
   border: .1px solid rgba(214, 214, 214, 0.5);
-  padding: 20px 10px 65px 10px;
+  padding: 20px 10px 35px 10px;
   border-radius: 15px;
   min-width: 400px;
-  //min-height: 400px;
 }
 
 form {
-  height: 200px;
-  margin-top: 20px;
+  margin: 20px 0;
 }
 
 .solve {
@@ -42,7 +40,6 @@ form {
 
   display: block;
   position: absolute;
-  outline: none;
   top: 0;
   right: 0;
   height: 100%;

@@ -69,8 +69,8 @@ export class AnimationService {
           borderRadius: '0%',
           ease: 'none',
           stagger: {
-            // amount: this.getDuration(0.5, 3.5)
-            each: this.getDuration(0.01, 0.07)
+            amount: this.getDuration(0.5, 5)
+            // each: this.getDuration(0.01, 0.07)
           }
         }, 'first')
       .to(path, {

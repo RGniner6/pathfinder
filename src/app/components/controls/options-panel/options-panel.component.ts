@@ -21,7 +21,7 @@ export class OptionsPanelComponent implements OnInit {
               private fb: FormBuilder) {
     // this.algorithms.push(new AStar())
     this.form = this.fb.group({
-      algorithm: [this.algorithms[0].algorithm],
+      algorithm: [this.algorithms[0]],
       heuristic: [this.heuristics[0].heuristic],
       animationSpeed: [50],
     });
@@ -41,8 +41,13 @@ export class OptionsPanelComponent implements OnInit {
   updateOptions() {
     const options = Object.assign({}, this.form.value);
     console.log(options);
-    this.gridService.setOptions(options.algorithm, options.heuristic);
+    console.log(`needsHeuristic: `, this.form.get('algorithm').value);
+    this.gridService.setOptions(options.algorithm.algorithm, options.heuristic);
     this.animationService.setSpeed(options.animationSpeed);
+  }
+
+  get needsHeuristic(): boolean {
+    return (this.form.get('algorithm').value as AlgorithmOption).needsHeuristic;
   }
 
 }
