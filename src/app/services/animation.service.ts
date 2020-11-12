@@ -69,8 +69,8 @@ export class AnimationService {
           borderRadius: '0%',
           ease: 'none',
           stagger: {
-            amount: this.getDuration(0.5, 5)
-            // each: this.getDuration(0.01, 0.07)
+            // amount: this.getDuration(0.5, 5)
+            each: this.getDuration(0.01, 0.07)
           }
         }, 'first')
       .to(path, {
@@ -99,7 +99,7 @@ export class AnimationService {
       this.visitedTl.pause(0);
       this.visitedTl.clear();
       cells.forEach(cell => cell.animate(''));
-      console.log(`resetGrid() called`)
+      // console.log(`resetGrid() called`)
   }
 
   resetGridWithAnimation(cells: Cell[]) {

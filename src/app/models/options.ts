@@ -3,6 +3,7 @@ import {euclideanDistance, Heuristic, manhattanDistance} from '../algorithms/heu
 import {AStar} from '../algorithms/AStar';
 import {Dijkstra} from '../algorithms/Dijkstra';
 import {BFS} from '../algorithms/BFS';
+import {DFS} from '../algorithms/DFS';
 
 export interface Options {
   algorithm: SearchAlgorithm;
@@ -30,6 +31,12 @@ export const algorithmOptions: AlgorithmOption[] = [
   {
     name: `Breadth First Search (unweighted)`,
     algorithm: new BFS(),
+    needsHeuristic: false,
+    weighted: false,
+  },
+  {
+    name: `Depth First Search (unweighted)`,
+    algorithm: new DFS(),
     needsHeuristic: false,
     weighted: false,
   },

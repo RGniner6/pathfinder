@@ -38,6 +38,14 @@
 
 .wall {
   background-color: black !important;
+
+  .visited {
+    background-color: transparent !important;
+  }
+
+  .path {
+    background-color: transparent !important;
+  }
 }
 
 .weight {
