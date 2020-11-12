@@ -3,6 +3,7 @@ import {BehaviorSubject} from 'rxjs';
 
 export class Cell {
   public type: CellType;
+  weight: number;
   //For pathfinding algos
   cost: number;
   closed: boolean;
@@ -45,6 +46,7 @@ export class Cell {
     this.cost = Number.MAX_VALUE;
     this.gCost = Number.MAX_VALUE;
     this.hCost = Number.MAX_VALUE;
+    this.weight = 1;
     this.prevCell = null;
 
     if (this.type === 'start') {
@@ -53,7 +55,8 @@ export class Cell {
       this.hCost = 0;
     }
     else if (this.type === 'weight') {
-      this.cost = 10;
+      // this.cost = 10;
+      this.weight = 10;
     }
   }
 

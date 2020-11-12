@@ -12,6 +12,9 @@
 .tile {
   height: 100%;
   width: 100%;
+  font-size: 8px;
+  display: grid;
+  place-items: center;
 }
 
 .placeholder {
@@ -39,6 +42,7 @@
 
 .weight {
   background-color: #737373 !important;
+  opacity: 50%;
 }
 
 .visited {

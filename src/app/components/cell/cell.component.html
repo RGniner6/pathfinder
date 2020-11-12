@@ -13,6 +13,7 @@
     <div #tile class="tile"
          [class.path]="path"
          [class.visited]="visited">
+      <span class="cost" *ngIf="showCost">{{cell.closed ? cell.cost : ''}}</span>
     </div>
   </div>
 </div>

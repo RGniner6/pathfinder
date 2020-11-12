@@ -23,7 +23,7 @@ export class OptionsPanelComponent implements OnInit {
     this.form = this.fb.group({
       algorithm: [this.algorithms[0]],
       heuristic: [this.heuristics[0].heuristic],
-      animationSpeed: [50],
+      animationSpeed: [100],
     });
   }
 

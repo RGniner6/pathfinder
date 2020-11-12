@@ -19,6 +19,7 @@ export class CellComponent implements OnInit {
   visited: boolean = false;
   path: boolean = false;
   placeholder: CellType;
+  showCost:boolean = false;
   noDrop: boolean = false;
 
   @ViewChild('tile', {static: true}) tile: ElementRef;

@@ -70,7 +70,7 @@ export class AStar implements SearchAlgorithm {
         // If cost from current to neighbour (current.gCost + neighbour.cost)
         // is less than neighbour.gCost, then {}
         if (!this.open.includes(neighbour)
-          || this.costFunction(current, neighbour) < neighbour.gCost) {
+          || (current.gCost + neighbour.weight) < neighbour.gCost) {
           this.updateCostToNeighbour(current, neighbour);
           neighbour.prevCell = current;
           if (!this.open.includes(neighbour)) {
@@ -87,17 +87,15 @@ export class AStar implements SearchAlgorithm {
   getVisited() {
   }
 
-  //TODO G-cost needs to be the weight of the cell
   //TODO Previously explored cells are not updated when cheaper path to it is found
 
   updateCostToNeighbour(current: Cell, neighbour: Cell) {
     // f = g + h
     //totalCost = cost to current from start + estimated cost to destination from current
-    neighbour.gCost = current.gCost + this.costFunction(current, neighbour);
+    neighbour.gCost = current.gCost + neighbour.weight;
     neighbour.hCost = this.costFunction(neighbour, this.end);
     neighbour.cost = neighbour.gCost + neighbour.hCost;
     // console.log(`Neighbour's gCost: ${neighbour.gCost}, hCost: ${neighbour.hCost}, cost: ${neighbour.cost}, `)
-
   }
 
   linearDistanceBetween(cell1: Cell, cell2: Cell) {
