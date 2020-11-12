@@ -2,9 +2,19 @@
   <div class="brush-panel">
     <div class="label">Select Brush:</div>
     <div class="brushes">
-      <div class="brush" *ngFor="let brush of brushes" (click)="selectBrush(brush)">
-        <div class="icon" [ngClass]="brush"></div>
-        <div class="icon-label">{{brush | titlecase}}</div>
+      <div class="brush" (click)="selectBrush('clear')">
+        <div class="icon clear"></div>
+        <div class="icon-label">Clear</div>
+      </div>
+      <div class="brush" (click)="selectBrush('wall')">
+        <div class="icon wall"></div>
+        <div class="icon-label">Wall</div>
+      </div>
+      <div class="brush" (click)="selectBrush('weight')">
+        <div class="icon weight">
+          <fa-icon class="black" [icon]="['fas', 'weight-hanging']"></fa-icon>
+        </div>
+        <div class="icon-label">Weight</div>
       </div>
     </div>
   </div>

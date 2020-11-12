@@ -23,21 +23,30 @@
 .brush {
   cursor: pointer;
   margin-right: 15px;
-  padding: 0 5px;
+  width: 60px;
+  padding: 5px;
+  //border: 1px solid rgba(214, 214, 214, 0.5);
+  //border-radius: 15px;
 }
 
 .icon {
-  border: .1px solid rgba(214, 214, 214, 0.5);
+  border: 1px solid rgba(214, 214, 214, 1);
   height: 25px;
   width: 25px;
   margin: 0 auto;
+  border-radius: 5px;
 }
 
 .icon-label {
   font-size: 12px;
-  display: none;
+  //display: none;
   text-align: center;
   width: 100%;
+}
+
+.weight {
+  text-align: center;
+  border: none;
 }
 
 .quick-actions {

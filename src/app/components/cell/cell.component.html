@@ -10,6 +10,11 @@
        [class.placeholder]="!!placeholder"
        [class.no-drop]="noDrop"
   >
+    <div class="type-icon">
+<!--      <fa-icon *ngIf="icon === 'start'" [icon]="['far', 'circle']"></fa-icon>-->
+<!--      <fa-icon *ngIf="icon === 'end'" [icon]="['fas', 'times']"></fa-icon>-->
+      <fa-icon class="black" *ngIf="icon === 'weight'" [icon]="['fas', 'weight-hanging']"></fa-icon>
+    </div>
     <div #tile class="tile"
          [class.path]="path"
          [class.visited]="visited">

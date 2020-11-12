@@ -124,4 +124,12 @@ export class CellComponent implements OnInit {
     })
   }
 
+  get icon() {
+    if (this.cell.type !== 'clear' && this.cell.type !== 'wall')
+      return this.cell.type;
+    // else if (this.placeholder)
+    //   return this.placeholder;
+    return false;
+  }
+
 }

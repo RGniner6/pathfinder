@@ -21,9 +21,9 @@ export class OptionsPanelComponent implements OnInit {
               private fb: FormBuilder) {
     // this.algorithms.push(new AStar())
     this.form = this.fb.group({
-      algorithm: [this.algorithms[3]],
+      algorithm: [this.algorithms[0]],
       heuristic: [this.heuristics[0].heuristic],
-      animationSpeed: [99],
+      animationSpeed: [50],
     });
   }
 

@@ -6,7 +6,10 @@
 .type {
   height: 100%;
   width: 100%;
+  position: relative;
   background-color: white;
+  display: grid;
+  place-items: center;
 }
 
 .tile {
@@ -19,6 +22,18 @@
 
 .placeholder {
   opacity: 50%;
+}
+
+.type-icon {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 12px;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
 }
 
 .start {
@@ -38,7 +53,6 @@
 
 .wall {
   background-color: black !important;
-
   .visited {
     background-color: transparent !important;
   }
@@ -49,8 +63,7 @@
 }
 
 .weight {
-  background-color: #737373 !important;
-  opacity: 50%;
+  //background-color: #999999 !important;
 }
 
 .visited {
